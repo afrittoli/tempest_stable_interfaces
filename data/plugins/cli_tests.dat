@@ -1,0 +1,14 @@
+2016-04-12 1 python-aodhclient
+2016-04-12 2 python-ceilometerclient
+2015-05-04 3 python-cinderclient
+2015-09-23 4 python-designateclient
+2015-04-18 5 python-glanceclient
+2015-08-28 6 python-gnocchiclient
+2015-06-03 7 python-heatclient
+2015-10-30 8 python-ironicclient
+2014-11-12 10 python-manilaclient
+2014-11-17 11 python-mistralclient
+2015-05-09 12 python-muranoclient
+2015-03-09 13 python-neutronclient
+2015-04-21 14 python-novaclient
+2015-03-24 16 python-saharaclient

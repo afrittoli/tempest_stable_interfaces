@@ -1,0 +1,17 @@
+astara
+barbican
+blazar
+cerberus
+cue
+designate
+kingbird
+networking-l2gw
+networking-vsphere
+neutron-lbaas
+neutron-vpnaas
+python-keystoneclient
+python-openstackclient
+solum
+tacker
+tempest-plugin-cookiecutter
+vitrage

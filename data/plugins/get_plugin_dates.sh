@@ -15,3 +15,15 @@ find ${git_folder} -name 'setup.cfg' -exec egrep -l '^tempest' '{}' \; | while r
     echo "$(git blame -L '/^tempest/,+1' $(basename $aa) | awk '{print $1}' |xargs git log -1 --format=%cd --date=short) $(basename $(dirname $aa))";
     cd - &> /dev/null;
 done | sort | awk '{ print $1" "NR" "$2 }' > ${script_folder}/tempest_plugins.dat
+
+jj=1
+for client_repo in $(ls ${git_folder} | grep python-); do
+    egrep '^(import|from) tempest[_\.]+lib\.cli(\.| import )base' -l -r ${git_folder}/${client_repo} | while read aa; do
+        pushd $(dirname $aa) &> /dev/null;
+        echo "$(git blame -L '/^\(from\|import\) tempest[_\.]\+lib\.cli\(\.\| import \)/,+1' $(basename $aa) | awk '{print $1}' |xargs git log -1 --format=%cd --date=short) ${client_repo}";
+        popd &> /dev/null;
+    done | sort | awk '{ print $1" "'${jj}'" "$2 }' | head -1
+    jj=$(( jj + 1 ))
+done > ${script_folder}/cli_tests.dat
+
+awk '{ print $3 }' ${scipt_folder}/tempest_plugins.dat ${script_folder}/cli_tests.dat | sort | comm -23 ${script_folder}/../repos - > ${script_folder}/other.datr
