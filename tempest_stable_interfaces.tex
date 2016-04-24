@@ -16,6 +16,7 @@
 \usepackage{color}
 \usepackage{amsmath}
 \usepackage{tikz}
+\usepackage{tipa}
 \newcommand\RBox[1]{%
   \tikz\node[draw,rounded corners,align=center,] {#1};%
 }
@@ -90,6 +91,14 @@
 \end{frame}
 }
 
+\section{Logistics}
+\begin{frame}[c]
+    \frametitle{Neutron or Newton}
+    \begin{center}
+        \Huge \textipa{/"nju:t(r)\textturnscripta{}n/}
+    \end{center}
+\end{frame}
+
 \section{What is OpenStack QA?}
 \begin{frame}
     \frametitle{What is OpenStack QA?}
@@ -121,6 +130,25 @@ any point during the release cycle.}
         \item{hacking}
         \item{grenade}
     \end{itemize}
+\end{frame}
+
+\section{QA during Mitaka}
+\begin{frame}
+    \frametitle{Tempest plugins over time}
+    \begin{figure}[p]
+    	\centering
+    	\includegraphics[width=0.8\textwidth]{tempest-plugins.png}
+        \caption{Source: git blame -L '/\^{}tempest/,+1' setup.cfg | awk '\{print \$1\}' | xargs git log -1 --format=\%cd --date=short}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{CLI tests over time}
+    \begin{figure}[p]
+    	\centering
+    	\includegraphics[width=0.8\textwidth]{cli-tests.png}
+        \caption{Source: git blame -L '/\^{}tempest/,+1' setup.cfg | awk '\{print \$1\}' | xargs git log -1 --format=\%cd --date=short}
+    \end{figure}
 \end{frame}
 
 \section{Tempest APIs in OpenStack}
