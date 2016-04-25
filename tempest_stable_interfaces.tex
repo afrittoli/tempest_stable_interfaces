@@ -145,13 +145,23 @@ any point during the release cycle.}
     \end{itemize}
 \end{frame}
 
+\begin{frame}[c]
+    \frametitle{What is Tempest}
+    \begin{center}
+    	\includegraphics[width=1.0\textwidth]{tempest.jpg}
+    \end{center}
+\end{frame}
+
 \begin{frame}
     \frametitle{Integration Tests in Tempest}
     \begin{itemize}
-        \item{Six core services (and 1 horizon scenario)}
+        \item{Six core services}
             \begin{itemize}
                 \item{tests executed in integrated-gate jobs}
             \end{itemize}
+    \end{itemize}
+    \text{ }
+    \begin{itemize}
         \item{Other services (to be moved out of tree)}
             \begin{itemize}
                 \item{data\_processing, database, orchestration tests executed in layer4 job}
@@ -165,17 +175,18 @@ any point during the release cycle.}
 \begin{frame}[c]
     %\frametitle{Integration Tests outside of tempest tree}
     \begin{center}
-        \large Who uses Tempest interfaces in OpenStack?
+        \large Which tests use Tempest interfaces in OpenStack?
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Integration Tests outside of tempest tree}
+    \frametitle{Integration Tests outside of Tempest tree}
     \begin{itemize}
         \item{Tempest Plugins (29)}
         \item{CLI tests for clients (16)}
         \item{Other functional/integration tests}
     \end{itemize}
+    \text{ }
     \begin{itemize}
         \item{Not executed against tempest}
         \item{Should only use tempest stable interfaces}
@@ -453,6 +464,7 @@ any point during the release cycle.}
     \begin{itemize}
         \item Tempest Stable Interfaces Docs: \href{http://docs.openstack.org/developer/tempest/library.html}{http://docs.openstack.org/developer/tempest/library.html}
         \item Tempest Plugin Docs: \href{http://docs.openstack.org/developer/tempest/plugin.html}{http://docs.openstack.org/developer/tempest/plugin.html}
+        \item Tempest External Plugins Presentation: \href{https://github.com/mtreinish/external_plugins}{https://github.com/mtreinish/external\_plugins}
         \item \#openstack-qa on Freenode
     \end{itemize}
 \end{frame}
