@@ -113,26 +113,40 @@ any point during the release cycle.}
 \begin{frame}
     \frametitle{Current QA Projects}
     \begin{itemize}
-        \item{devstack-plugin-cookiecutter}
         \item{eslint-config-openstack}
         \item{bashate}
-        \item{stackviz}
-        \item{devstack-vagrant}
-        \item{qa-specs}
-        \item{tempest-lib (deprecated)}
+        \item{hacking}
         \item{tempest}
+        \item{tempest-lib (deprecated)}
+        \item{grenade}
         \item{devstack}
         \item{devstack-plugin-ceph}
-        \item{os-testr}
+        \item{devstack-vagrant}
+        \item{stackviz}
         \item{openstack-health dashboard}
+        \item{os-testr}
+        \item{devstack-plugin-cookiecutter}
         \item{tempest-plugin-cookiecutter}
         \item{os-performance-tools}
-        \item{hacking}
-        \item{grenade}
     \end{itemize}
 \end{frame}
 
 \section{Tempest}
+\begin{frame}[c]
+    \frametitle{What is Tempest}
+    \begin{center}
+    	\includegraphics[width=1.0\textwidth]{tempest.jpg}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Tempest in the Big Tent}
+    \begin{itemize}
+        \item tempest\_lib or tempest.lib
+        \item tempest plugins
+    \end{itemize}
+\end{frame}
+
 \begin{frame}
     \frametitle{Current Projects QA directly supports in-tree}
     \begin{itemize}
@@ -143,39 +157,16 @@ any point during the release cycle.}
         \item Neutron
         \item Swift
     \end{itemize}
-\end{frame}
-
-\begin{frame}[c]
-    \frametitle{What is Tempest}
-    \begin{center}
-    	\includegraphics[width=1.0\textwidth]{tempest.jpg}
-    \end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Integration Tests in Tempest}
     \begin{itemize}
-        \item{Six core services}
-            \begin{itemize}
-                \item{tests executed in integrated-gate jobs}
-            \end{itemize}
-    \end{itemize}
-    \text{ }
-    \begin{itemize}
-        \item{Other services (to be moved out of tree)}
-            \begin{itemize}
-                \item{data\_processing, database, orchestration tests executed in layer4 job}
-                \item{telemetry tests executed in ceilometer-mysql-neutron job}
-                \item{ironic tests executed in ironic-agent\_ssh job}
-            \end{itemize}
+        \item{Tests executed in integrated-gate jobs}
     \end{itemize}
 \end{frame}
 
 \section{Growth of tests out of Tempest Tree}
 \begin{frame}[c]
-    %\frametitle{Integration Tests outside of tempest tree}
+    %\frametitle{Integration Tests in and out of tree}
     \begin{center}
-        \large Which tests use Tempest interfaces in OpenStack?
+        \large Where do other Tempest based tests live in OpenStack?
     \end{center}
 \end{frame}
 
@@ -191,6 +182,15 @@ any point during the release cycle.}
         \item{Not executed against tempest}
         \item{Should only use tempest stable interfaces}
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tempest Plugins at the end of Liberty}
+    \begin{figure}[p]
+    	\centering
+    	\includegraphics[width=0.7\textwidth]{tempest-plugins-old.png}
+        \caption{Source: git blame -L '/\^{}tempest/,+1' setup.cfg | awk '\{print \$1\}' | xargs git log -1 --format=\%cd --date=short}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -214,7 +214,7 @@ any point during the release cycle.}
 \begin{frame}
     \frametitle{Other Tempest Tests}
     \begin{itemize}
-        \item{Tempest Plugins (WIP)}
+        \item{WIP Tempest Plugins}
             \begin{itemize}
                 \item{kingbird}
                 \item{vitrage}
@@ -249,6 +249,13 @@ any point during the release cycle.}
     \end{itemize}
 \end{frame}
 
+\begin{frame}[c]
+    %\frametitle{Integration Tests in and out of tree}
+    \begin{center}
+        \large What are Tempest (Stable) Interfaces, how are they used?
+    \end{center}
+\end{frame}
+
 \section{Tempest Interfaces}
 \begin{frame}
     \frametitle{Tempest Stable APIs}
@@ -264,6 +271,15 @@ any point during the release cycle.}
 \end{frame}
 
 \begin{frame}
+    \frametitle{Tempest Stable APIs}
+    \begin{figure}[p]
+    	\centering
+    	\includegraphics[width=0.7\textwidth]{lib-imports.png}
+    	\caption{Source: codesearch.openstack.org}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
     \frametitle{Tempest Internal APIs planned to become Stable}
     \begin{itemize}
         \item{Service clients: volume, image, object-storage}
@@ -273,11 +289,20 @@ any point during the release cycle.}
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Tempest Internal APIs}
+    \begin{figure}[p]
+    	\centering
+    	\includegraphics[width=0.7\textwidth]{tempest-imports.png}
+    	\caption{Source: codesearch.openstack.org}
+    \end{figure}
+\end{frame}
+
 \section{Writing Plugins}
 \begin{frame}[c]
     %\frametitle{Tempest Plugins}
     \begin{center}
-        \large Which interfaces do you need to implement a tempest plugin?
+        \large How to use these interfaces to write a Tempest plugin?
     \end{center}
 \end{frame}
 
@@ -438,24 +463,6 @@ any point during the release cycle.}
     \begin{center}
         \large How are Tempest interfaces used today in OpenStack?
     \end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Tempest Stable APIs}
-    \begin{figure}[p]
-    	\centering
-    	\includegraphics[width=0.7\textwidth]{lib-imports.png}
-    	\caption{Source: codesearch.openstack.org}
-    \end{figure}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Tempest Internal APIs}
-    \begin{figure}[p]
-    	\centering
-    	\includegraphics[width=0.7\textwidth]{tempest-imports.png}
-    	\caption{Source: codesearch.openstack.org}
-    \end{figure}
 \end{frame}
 
 \section{More Information}
