@@ -212,7 +212,7 @@ any point during the release cycle.}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Other Tempest Tests}
+    \frametitle{Functional/Integration Tests}
     \begin{itemize}
         \item{WIP Tempest Plugins}
             \begin{itemize}
@@ -236,16 +236,20 @@ any point during the release cycle.}
 \begin{frame}
     \frametitle{Functional/Integration Tests}
     \begin{itemize}
-        \item{cerberus (rest\_client, auth, clients)}
-        \item{cue (rest\_client, test base class)}
-        \item{solum (rest\_client, auth)}
-    \end{itemize}
-    \begin{itemize}
-        \item{astara (utils)}
-        \item{barbican (utils)}
-        \item{python-keystoneclient (test base class)}
-        \item{python-openstackclient (utils)}
-        \item{tacker (test base class)}
+        \item{Rest Client and other interfaces}
+            \begin{itemize}
+                \item{cerberus}
+                \item{cue}
+                \item{solum}
+            \end{itemize}
+         \item{Test base class or utils}
+            \begin{itemize}
+                \item{astara}
+                \item{barbican}
+                \item{python-keystoneclient}
+                \item{python-openstackclient}
+                \item{tacker}
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -260,9 +264,11 @@ any point during the release cycle.}
 \begin{frame}
     \frametitle{Tempest Stable APIs}
     \begin{itemize}
-        \item{Common: rest client, microversion, ssh client, utils}
-        \item{Service clients: identity, network, compute}
+        \item{Rest Client and Service clients: identity, network, compute}
         \item{Authentication providers}
+        \item{API Microversion utils}
+        \item{SSH client}
+        \item{Test data utils}
         \item{CLI test framework}
         \item{Decorators, exceptions}
         \item{Base test class}
@@ -280,12 +286,13 @@ any point during the release cycle.}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Tempest Internal APIs planned to become Stable}
+    \frametitle{Tempest Internal APIs candidate to become Stable}
     \begin{itemize}
         \item{Service clients: volume, image, object-storage}
         \item{Credential providers}
         \item{Client manager}
         \item{Plugin}
+        \item{Attr decorator}
     \end{itemize}
 \end{frame}
 
