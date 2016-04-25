@@ -132,12 +132,27 @@ any point during the release cycle.}
     \end{itemize}
 \end{frame}
 
+\section{Tempest}
+\begin{frame}
+    \frametitle{Integration Tests in Tempest}
+    \begin{itemize}
+        \item{Six core services}
+            \begin{itemize}
+                \item{identity, compute, image, volume, network, object storage}
+            \end{itemize}
+        \item{Other services to be moved out of tree}
+            \begin{itemize}
+                \item{baremetal, data\_processing, database, orchestration, telemetry}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
 \section{QA during Mitaka}
 \begin{frame}
     \frametitle{Integration tests outside of tempest tree}
     \begin{itemize}
-        \item{Tempest Plugins}
-        \item{CLI tests for clients}
+        \item{Tempest Plugins (29)}
+        \item{CLI tests for clients (16)}
         \item{Other functional/integration tests}
     \end{itemize}
 \end{frame}
@@ -199,20 +214,41 @@ any point during the release cycle.}
 \end{frame}
 
 \section{Tempest APIs in OpenStack}
+
+\begin{frame}
+    \frametitle{Tempest Stable APIs}
+    \begin{itemize}
+        \item{Common: rest client, microversion, ssh client, utils}
+        \item{Service clients: identity, network, compute}
+        \item{Base test class}
+        \item{Authentication providers}
+        \item{CLI test framework}
+        \item{Decorators, exceptions}
+        \item{Commands: check\_uuid, skip tracker}
+    \end{itemize}
+\end{frame}
+
 \begin{frame}
     \frametitle{Tempest Stable APIs}
     \begin{figure}[p]
     	\centering
-    	\includegraphics[width=0.8\textwidth]{lib_import_per_namespace.png}
+    	\includegraphics[width=0.8\textwidth]{lib-imports.png}
     	\caption{Source: codesearch.openstack.org}
     \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Commonly Used Tempest Internal APIs}
+    \begin{itemize}
+        \item{TBD}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Tempest Internal APIs}
     \begin{figure}[p]
     	\centering
-    	\includegraphics[width=0.8\textwidth]{tempest_import_per_namespace.png}
+    	\includegraphics[width=0.8\textwidth]{tempest-imports.png}
     	\caption{Source: codesearch.openstack.org}
     \end{figure}
 \end{frame}
