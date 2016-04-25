@@ -161,9 +161,16 @@ any point during the release cycle.}
     \end{itemize}
 \end{frame}
 
-\section{Out of Tempest tree}
+\section{Growth of tests out of Tempest Tree}
+\begin{frame}[c]
+    %\frametitle{Integration Tests outside of tempest tree}
+    \begin{center}
+        \large Who uses Tempest interfaces in OpenStack?
+    \end{center}
+\end{frame}
+
 \begin{frame}
-    \frametitle{Integration tests outside of tempest tree}
+    \frametitle{Integration Tests outside of tempest tree}
     \begin{itemize}
         \item{Tempest Plugins (29)}
         \item{CLI tests for clients (16)}
@@ -175,33 +182,8 @@ any point during the release cycle.}
     \end{itemize}
 \end{frame}
 
-\section{Stable Interfaces}
 \begin{frame}
-    \frametitle{Tempest Stable APIs}
-    \begin{itemize}
-        \item{Common: rest client, microversion, ssh client, utils}
-        \item{Service clients: identity, network, compute}
-        \item{Base test class}
-        \item{Authentication providers}
-        \item{CLI test framework}
-        \item{Decorators, exceptions}
-        \item{Commands: check\_uuid, skip tracker}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Tempest Planned Stable APIs}
-    \begin{itemize}
-        \item{Service clients: volume, image, object-storage}
-        \item{Credential providers}
-        \item{Client manager}
-        \item{Plugin}
-    \end{itemize}
-\end{frame}
-
-\section{Tempest Plugins}
-\begin{frame}
-    \frametitle{Tempest plugins over time}
+    \frametitle{Tempest Plugins over time}
     \begin{figure}[p]
     	\centering
     	\includegraphics[width=0.7\textwidth]{tempest-plugins.png}
@@ -210,75 +192,7 @@ any point during the release cycle.}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Tempest plugins interface}
-    \begin{itemize}
-        \item Integrates any external tests into a tempest run
-        \item Unifies configuration between plugin(s) and in-tree
-        \item Integrates custom service clients (planned)
-    \end{itemize}
-    \begin{itemize}
-    	\item{Based on stevedore extension manager}
-    	\item{Automatically discovered when installed}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Tempest plugins interface}
-    \lstinputlisting[basicstyle=\tiny,language=Python]{code/manila_plugin.py}
-    \begin{itemize}
-        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/manila/tree/manila_tempest_tests/plugin.py}{http://git.openstack.org/cgit/openstack/manila/tree/manila\_tempest\_tests/plugin.py}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Rest client and service clients}
-    \begin{itemize}
-        \item ReST API Calls with different HTTP methods
-        \item Decorate requests using supplied auth provider
-        \item Validate HTTP return codes
-        \item Handle HTTP non-2xx return codes as custom exceptions
-    \end{itemize}
-    \begin{itemize}
-        \item Methods for API calls
-        \item Minimal response body parsing
-        \item Pass any parameter to API calls
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Rest client and service clients}
-    \lstinputlisting[basicstyle=\tiny,language=Python]{code/ceilometer_client.py}
-    \begin{itemize}
-        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/ceilometer/tree/ceilometer/tests/tempest/service/client.py}{http://git.openstack.org/cgit/openstack/ceilometer/tree/ceilometer/tests/tempest/service/client.py}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Authentication Layer}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Authentication Layer}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Credential Providers}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Credential Providers}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Client Managers}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Client Managers}
-\end{frame}
-
-\begin{frame}
-    \frametitle{CLI tests over time}
+    \frametitle{CLI Tests over time}
     \begin{figure}[p]
     	\centering
     	\includegraphics[width=0.7\textwidth]{cli-tests.png}
@@ -324,21 +238,186 @@ any point during the release cycle.}
     \end{itemize}
 \end{frame}
 
-\section{Tempest APIs in OpenStack}
-
+\section{Tempest Interfaces}
 \begin{frame}
     \frametitle{Tempest Stable APIs}
     \begin{itemize}
         \item{Common: rest client, microversion, ssh client, utils}
         \item{Service clients: identity, network, compute}
-        \item{Base test class}
         \item{Authentication providers}
         \item{CLI test framework}
         \item{Decorators, exceptions}
+        \item{Base test class}
         \item{Commands: check\_uuid, skip tracker}
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Tempest Internal APIs planned to become Stable}
+    \begin{itemize}
+        \item{Service clients: volume, image, object-storage}
+        \item{Credential providers}
+        \item{Client manager}
+        \item{Plugin}
+    \end{itemize}
+\end{frame}
+
+\section{Writing Plugins}
+\begin{frame}[c]
+    %\frametitle{Tempest Plugins}
+    \begin{center}
+        \large Which interfaces do you need to implement your tempest plugin?
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tempest Plugins Interface}
+    \begin{itemize}
+        \item Integrates external tests into a tempest run
+        \item Unifies configuration between plugin(s) and in-tree
+        \item Integrates custom service clients (planned)
+    \end{itemize}
+    \begin{itemize}
+    	\item{Based on stevedore extension manager}
+    	\item{Automatically discovered when installed}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tempest Plugins Interface}
+    \lstinputlisting[basicstyle=\tiny,language=Python]{code/manila_plugin.py}
+    \begin{itemize}
+        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/manila/tree/manila_tempest_tests/plugin.py}{http://git.openstack.org/cgit/openstack/manila/tree/manila\_tempest\_tests/plugin.py}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rest Client and Service Clients}
+    \begin{itemize}
+        \item ReST API Calls with different HTTP methods
+        \item Decorate requests using supplied auth provider
+        \item Validate HTTP return codes
+        \item Handle HTTP non-2xx return codes as custom exceptions
+    \end{itemize}
+    \begin{itemize}
+        \item Methods for API calls
+        \item Minimal response body parsing
+        \item Pass any parameter to API calls
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rest Client and Service Clients}
+    \lstinputlisting[basicstyle=\tiny,language=Python]{code/ceilometer_client.py}
+    \begin{itemize}
+        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/ceilometer/tree/ceilometer/tests/tempest/service/client.py}{http://git.openstack.org/cgit/openstack/ceilometer/tree/ceilometer/tests/tempest/service/client.py}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Authentication Layer}
+    \begin{itemize}
+        \item Credentials object
+        \item Select endpoints from the catalogue
+        \item Decorate requests with identity v2 and v3 auth data
+        \item Inject alternate auth data
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Authentication Layer}
+    \lstinputlisting[basicstyle=\tiny,language=Python]{code/auth_provider.py}
+    \begin{itemize}
+        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/tempest/tree/tempest/manager.py}{http://git.openstack.org/cgit/openstack/tempest/tree/tempest/manager.py}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Client Managers}
+    \begin{itemize}
+        \item One object to access all service clients
+        \item Bound to a set of credentials
+        \item Hide the complexity of the auth layer
+        \item Not yet in the lib namespace (WIP)
+    \end{itemize}
+    \begin{itemize}
+        \item Stable interface to register service clients from plugins
+        \item Lazy loading of clients
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Client Managers}
+     \lstinputlisting[basicstyle=\tiny,language=Python]{code/neutron_manager.py}
+    \begin{itemize}
+        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/neutron/tree/neutron/tests/tempest/api/clients.py}{http://git.openstack.org/cgit/openstack/neutron/tree/neutron/tests/tempest/api/clients.py}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Credential Providers}
+    \begin{itemize}
+        \item Supply test cases with credentials
+        \item Manage multiple test account for parallel test execution
+        \item Manage account specific network resources
+        \item Not yet in the lib namespace (WIP)
+    \end{itemize}
+    \begin{itemize}
+        \item Dynamic Credential Provider
+        \item Preprovisioned Credential Provider
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Testing microversions}
+    \begin{itemize}
+        \item Define acceptable microversion range for test class
+        \item Match configured microversion range with tests
+        \item Select microversion to be sent via API
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Testing microversions}
+    \lstinputlisting[basicstyle=\tiny,language=Python]{code/microversion.py}
+    \begin{itemize}
+        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/tempest/tree/tempest/api/compute/base.py}{http://git.openstack.org/cgit/openstack/tempest/tree/tempest/api/compute/base.py}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Miscellaneous Utils}
+    \begin{itemize}
+        \item Generate random test data
+        \item SSH client
+        \item Skip decorators
+        \item Test Attributes (not yet stable)
+    \end{itemize}
+\end{frame}
+
+\section{Writing CLI Tests}
+\begin{frame}[c]
+    %\frametitle{CLI Tests}
+    \begin{center}
+        \large Which interfaces do you need to implement your CLI tests?
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{CLI Tests Base Class}
+    \begin{itemize}
+        \item TBD
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Output Parser}
+    \begin{itemize}
+        \item TBD
+    \end{itemize}
+\end{frame}
+
+\section{Usage of Tempest APIs in OpenStack}
 \begin{frame}
     \frametitle{Tempest Stable APIs}
     \begin{figure}[p]
@@ -346,13 +425,6 @@ any point during the release cycle.}
     	\includegraphics[width=0.7\textwidth]{lib-imports.png}
     	\caption{Source: codesearch.openstack.org}
     \end{figure}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Commonly Used Tempest Internal APIs}
-    \begin{itemize}
-        \item{TBD}
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -364,10 +436,22 @@ any point during the release cycle.}
     \end{figure}
 \end{frame}
 
+\section{More Information}
+\begin{frame}
+\frametitle{Where to get more information}
+    \begin{itemize}
+        \item Tempest Stable Interfaces Docs: \href{http://docs.openstack.org/developer/tempest/library.html}{http://docs.openstack.org/developer/tempest/library.html}
+        \item Tempest Plugin Docs: \href{http://docs.openstack.org/developer/tempest/plugin.html}{http://docs.openstack.org/developer/tempest/plugin.html}
+        \item \#openstack-qa on Freenode
+    \end{itemize}
+\end{frame}
 
 \section{Questions}
-\begin{frame}
-\frametitle{Questions?}
+\begin{frame}[c]
+    %\frametitle{Questions?}
+    \begin{center}
+        \Huge Questions?
+    \end{center}
 \end{frame}
 
 %\section{Extra Info}
