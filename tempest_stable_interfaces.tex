@@ -266,7 +266,7 @@ any point during the release cycle.}
 \begin{frame}[c]
     %\frametitle{Tempest Plugins}
     \begin{center}
-        \large Which interfaces do you need to implement your tempest plugin?
+        \large Which interfaces do you need to implement a tempest plugin?
     \end{center}
 \end{frame}
 
@@ -399,25 +399,36 @@ any point during the release cycle.}
 \begin{frame}[c]
     %\frametitle{CLI Tests}
     \begin{center}
-        \large Which interfaces do you need to implement your CLI tests?
+        \large Which interfaces do you need to implement CLI tests?
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{CLI Tests Base Class}
+    \frametitle{CLI Tests Interfaces}
     \begin{itemize}
-        \item TBD
+        \item An \emph{execute} command to drive clients via CLI
+        \item A \emph{CLIClient} class that wraps \emph{execute} for clients
+        \item An \emph{output\_parser} module with helpers to parse clients output
+        \item A \emph{ClientTestBase} class with clients and output parsers
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Output Parser}
+    \frametitle{CLI Tests Interfaces}
+    \lstinputlisting[basicstyle=\tiny,language=Python]{code/mistral_cli.py}
     \begin{itemize}
-        \item TBD
+        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/python-mistralclient/tree/mistralclient/tests/functional/cli/base.py}{http://git.openstack.org/cgit/openstack/python-mistralclient/tree/mistralclient/tests/functional/cli/base.py}
     \end{itemize}
 \end{frame}
 
 \section{Usage of Tempest APIs in OpenStack}
+\begin{frame}[c]
+    %\frametitle{Usage of Tempest APIs in OpenStack}
+    \begin{center}
+        \large How are Tempest interfaces used today in OpenStack?
+    \end{center}
+\end{frame}
+
 \begin{frame}
     \frametitle{Tempest Stable APIs}
     \begin{figure}[p]
