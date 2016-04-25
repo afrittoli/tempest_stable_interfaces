@@ -134,20 +134,34 @@ any point during the release cycle.}
 
 \section{Tempest}
 \begin{frame}
+    \frametitle{Current Projects QA directly supports in-tree}
+    \begin{itemize}
+        \item Keystone
+        \item Nova
+        \item Glance
+        \item Cinder
+        \item Neutron
+        \item Swift
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{Integration Tests in Tempest}
     \begin{itemize}
-        \item{Six core services}
+        \item{Six core services (and 1 horizon scenario)}
             \begin{itemize}
-                \item{identity, compute, image, volume, network, object storage}
+                \item{tests executed in integrated-gate jobs}
             \end{itemize}
-        \item{Other services to be moved out of tree}
+        \item{Other services (to be moved out of tree)}
             \begin{itemize}
-                \item{baremetal, data\_processing, database, orchestration, telemetry}
+                \item{data\_processing, database, orchestration tests executed in layer4 job}
+                \item{telemetry tests executed in ceilometer-mysql-neutron job}
+                \item{ironic tests executed in ironic-agent\_ssh job}
             \end{itemize}
     \end{itemize}
 \end{frame}
 
-\section{QA during Mitaka}
+\section{Out of Tempest tree}
 \begin{frame}
     \frametitle{Integration tests outside of tempest tree}
     \begin{itemize}
@@ -155,15 +169,112 @@ any point during the release cycle.}
         \item{CLI tests for clients (16)}
         \item{Other functional/integration tests}
     \end{itemize}
+    \begin{itemize}
+        \item{Not executed against tempest}
+        \item{Should only use tempest stable interfaces}
+    \end{itemize}
 \end{frame}
 
+\section{Stable Interfaces}
+\begin{frame}
+    \frametitle{Tempest Stable APIs}
+    \begin{itemize}
+        \item{Common: rest client, microversion, ssh client, utils}
+        \item{Service clients: identity, network, compute}
+        \item{Base test class}
+        \item{Authentication providers}
+        \item{CLI test framework}
+        \item{Decorators, exceptions}
+        \item{Commands: check\_uuid, skip tracker}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tempest Planned Stable APIs}
+    \begin{itemize}
+        \item{Service clients: volume, image, object-storage}
+        \item{Credential providers}
+        \item{Client manager}
+        \item{Plugin}
+    \end{itemize}
+\end{frame}
+
+\section{Tempest Plugins}
 \begin{frame}
     \frametitle{Tempest plugins over time}
     \begin{figure}[p]
     	\centering
     	\includegraphics[width=0.7\textwidth]{tempest-plugins.png}
-        \caption{Source: git blame -L '/\^tempest/,+1' setup.cfg | awk '\{print \$1\}' | xargs git log -1 --format=\%cd --date=short}
+        \caption{Source: git blame -L '/\^{}tempest/,+1' setup.cfg | awk '\{print \$1\}' | xargs git log -1 --format=\%cd --date=short}
     \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tempest plugins interface}
+    \begin{itemize}
+        \item Integrates any external tests into a tempest run
+        \item Unifies configuration between plugin(s) and in-tree
+        \item Integrates custom service clients (planned)
+    \end{itemize}
+    \begin{itemize}
+    	\item{Based on stevedore extension manager}
+    	\item{Automatically discovered when installed}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tempest plugins interface}
+    \lstinputlisting[basicstyle=\tiny,language=Python]{code/manila_plugin.py}
+    \begin{itemize}
+        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/manila/tree/manila_tempest_tests/plugin.py}{http://git.openstack.org/cgit/openstack/manila/tree/manila\_tempest\_tests/plugin.py}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rest client and service clients}
+    \begin{itemize}
+        \item ReST API Calls with different HTTP methods
+        \item Decorate requests using supplied auth provider
+        \item Validate HTTP return codes
+        \item Handle HTTP non-2xx return codes as custom exceptions
+    \end{itemize}
+    \begin{itemize}
+        \item Methods for API calls
+        \item Minimal response body parsing
+        \item Pass any parameter to API calls
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rest client and service clients}
+    \lstinputlisting[basicstyle=\tiny,language=Python]{code/ceilometer_client.py}
+    \begin{itemize}
+        \item \tiny Full code at: \href{http://git.openstack.org/cgit/openstack/ceilometer/tree/ceilometer/tests/tempest/service/client.py}{http://git.openstack.org/cgit/openstack/ceilometer/tree/ceilometer/tests/tempest/service/client.py}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Authentication Layer}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Authentication Layer}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Credential Providers}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Credential Providers}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Client Managers}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Client Managers}
 \end{frame}
 
 \begin{frame}
@@ -171,7 +282,7 @@ any point during the release cycle.}
     \begin{figure}[p]
     	\centering
     	\includegraphics[width=0.7\textwidth]{cli-tests.png}
-        \caption{Source: git blame -L '/\^(from|import) tempest[\_\.]+lib\.cli/,+1' *.py}
+        \caption{Source: git blame -L '/\^{}(from|import) tempest[\_.]+lib.cli/,+1' *.py}
     \end{figure}
 \end{frame}
 
@@ -232,7 +343,7 @@ any point during the release cycle.}
     \frametitle{Tempest Stable APIs}
     \begin{figure}[p]
     	\centering
-    	\includegraphics[width=0.8\textwidth]{lib-imports.png}
+    	\includegraphics[width=0.7\textwidth]{lib-imports.png}
     	\caption{Source: codesearch.openstack.org}
     \end{figure}
 \end{frame}
@@ -248,7 +359,7 @@ any point during the release cycle.}
     \frametitle{Tempest Internal APIs}
     \begin{figure}[p]
     	\centering
-    	\includegraphics[width=0.8\textwidth]{tempest-imports.png}
+    	\includegraphics[width=0.7\textwidth]{tempest-imports.png}
     	\caption{Source: codesearch.openstack.org}
     \end{figure}
 \end{frame}
