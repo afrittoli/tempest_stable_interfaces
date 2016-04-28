@@ -72,7 +72,7 @@ for filter in 'tempest' 'lib'; do
     [[ "${filter}" == "tempest" ]] && grep_opt='-v' || grep_opt=' '
     echo "Building the table of repos per import in ${script_folder}/repo_per_${filter}_imports${filename_postifx}"
     echo "import;namespace;count;total_count;repos" > ${script_folder}/repo_per_${filter}_imports${filename_postifx}
-    for import in $(cat ${script_folder}/imports${filename_postifx} | egrep ${grep_opt} '^tempest.lib'); do
+    for import in $(cat ${script_folder}/imports${filename_postifx} | egrep ${grep_opt} '^(tempest.lib|tempest.config$|tempest.test_discover.plugins)'); do
         printf "${import};${import#tempest.*};"
         printf "$(egrep -c ${import}'(,|$)' ${script_folder}/imports_per_repo${filename_postifx});"
         printf "$(egrep -c ${import} ${script_folder}/raw/all_lines${filename_postifx});"

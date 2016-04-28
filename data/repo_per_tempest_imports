@@ -6,7 +6,6 @@ tempest.cli;cli;1;21;blazar
 tempest.clients;clients;15;19;blazar,cerberus,congress,designate,ec2-api,freezer-api,intel-nfv-ci-tests,ironic,magnum,manila,mistral,monasca-api,monasca-log-api,murano,watcher
 tempest.cloudscaling;cloudscaling;1;15;ec2-api
 tempest.common;common;22;82;aodh,ceilometer,congress,designate,ec2-api,freezer-api,gce-api,intel-nfv-ci-tests,ironic,kingbird,magnum,manila,monasca-api,monasca-log-api,murano,networking-bgpvpn,networking-fortinet,neutron-lbaas,sahara-tests,vmware-nsx,watcher,zaqar
-tempest.config;config;36;196;aodh,blazar,ceilometer,cerberus,congress,designate,ec2-api,freezer,freezer-api,gce-api,gnocchi,intel-nfv-ci-tests,ironic,keystone,kingbird,magnum,manila,mistral,monasca-api,monasca-log-api,murano,networking-bgpvpn,networking-fortinet,neutron,neutron-fwaas,neutron-lbaas,sahara,sahara-tests,senlin,solum,tap-as-a-service,tempest-plugin-cookiecutter,vitrage,vmware-nsx,watcher,zaqar
 tempest.config_resource_reservation;config_resource_reservation;1;3;blazar
 tempest.exceptions;exceptions;13;29;blazar,ceilometer,designate,ec2-api,gce-api,monasca-log-api,networking-fortinet,neutron-fwaas,neutron-lbaas,sahara,sahara-tests,vmware-nsx,watcher
 tempest.manager;manager;10;12;aodh,ceilometer,congress,designate,gce-api,networking-vsphere,neutron,neutron-lbaas,neutron-vpnaas,solum

@@ -1,4 +1,5 @@
 import;namespace;count;total_count;repos
+tempest.config;config;36;196;aodh,blazar,ceilometer,cerberus,congress,designate,ec2-api,freezer,freezer-api,gce-api,gnocchi,intel-nfv-ci-tests,ironic,keystone,kingbird,magnum,manila,mistral,monasca-api,monasca-log-api,murano,networking-bgpvpn,networking-fortinet,neutron,neutron-fwaas,neutron-lbaas,sahara,sahara-tests,senlin,solum,tap-as-a-service,tempest-plugin-cookiecutter,vitrage,vmware-nsx,watcher,zaqar
 tempest.lib.auth;lib.auth;5;7;cerberus,cue,designate,mistral,solum
 tempest.lib.base;lib.base;9;10;cerberus,cue,designate,ec2-api,gce-api,magnum,python-keystoneclient,python-neutronclient,sahara-tests
 tempest.lib.cli;lib.cli;14;24;python-aodhclient,python-ceilometerclient,python-cinderclient,python-designateclient,python-glanceclient,python-gnocchiclient,python-heatclient,python-ironicclient,python-manilaclient,python-mistralclient,python-muranoclient,python-neutronclient,python-novaclient,python-saharaclient
